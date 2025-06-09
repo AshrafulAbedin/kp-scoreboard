@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Plus, RotateCcw, Square, Play, Moon, Sun, Trophy, Users, Undo2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -217,16 +216,16 @@ const Index = () => {
 
   if (showSetup) {
     return (
-      <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
-          <Card className="w-full max-w-lg shadow-xl border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
-            <CardHeader className="text-center pb-6">
+      <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+        <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4">
+          <Card className="w-full max-w-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+            <CardHeader className="text-center pb-6 border-b border-gray-200 dark:border-gray-600">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="p-3 bg-blue-500 rounded-full">
+                <div className="p-3 bg-blue-900 rounded">
                   <Trophy className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <CardTitle className="text-3xl font-bold text-blue-900 dark:text-white">
                     KP Scoreboard
                   </CardTitle>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">Keep Points - Multiplayer Game Manager</p>
@@ -236,12 +235,12 @@ const Index = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setDarkMode(!darkMode)}
-                className="absolute top-4 right-4"
+                className="absolute top-4 right-4 text-gray-600 dark:text-gray-300"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 pt-6">
               <div>
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
                   <Users className="h-4 w-4" />
@@ -257,7 +256,7 @@ const Index = () => {
                     setNumPlayers(num);
                     setPlayerNames(Array(num).fill(''));
                   }}
-                  className="text-center text-lg"
+                  className="text-center text-lg border-gray-300 dark:border-gray-600"
                 />
               </div>
               
@@ -275,14 +274,14 @@ const Index = () => {
                       newNames[i] = e.target.value;
                       setPlayerNames(newNames);
                     }}
-                    className="transition-all duration-200 focus:scale-[1.02]"
+                    className="border-gray-300 dark:border-gray-600"
                   />
                 ))}
               </div>
               
               <Button 
                 onClick={handleSetupComplete}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 hover:scale-[1.02] shadow-lg"
+                className="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 rounded"
               >
                 <Play className="mr-2 h-5 w-5" />
                 Start Game
@@ -295,18 +294,18 @@ const Index = () => {
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+      <div className="min-h-screen bg-white dark:bg-gray-900">
         {/* Header */}
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b dark:border-gray-700 sticky top-0 z-10">
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-600">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-500 rounded-lg">
+                <div className="p-2 bg-blue-900 rounded">
                   <Trophy className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">KP Scoreboard</h1>
+                  <h1 className="text-2xl font-bold text-blue-900 dark:text-white">KP Scoreboard</h1>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Round {gameState.currentRound + 1} • {gameState.players.length} Players
                   </p>
@@ -318,6 +317,7 @@ const Index = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setDarkMode(!darkMode)}
+                  className="text-gray-600 dark:text-gray-300"
                 >
                   {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                 </Button>
@@ -329,6 +329,7 @@ const Index = () => {
                       size="sm"
                       onClick={undoLastAction}
                       disabled={actionHistory.length === 0}
+                      className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                     >
                       <Undo2 className="h-4 w-4 mr-1" />
                       Undo
@@ -338,6 +339,7 @@ const Index = () => {
                       variant="outline"
                       size="sm"
                       onClick={resetCurrentRound}
+                      className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                     >
                       <RotateCcw className="h-4 w-4 mr-1" />
                       Reset Round
@@ -347,6 +349,7 @@ const Index = () => {
                       variant="outline"
                       size="sm"
                       onClick={endRound}
+                      className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                     >
                       <Plus className="h-4 w-4 mr-1" />
                       End Round
@@ -365,10 +368,9 @@ const Index = () => {
                 
                 {gameState.gameEnded && (
                   <Button
-                    variant="default"
                     size="sm"
                     onClick={restartGame}
-                    className="bg-green-500 hover:bg-green-600"
+                    className="bg-blue-900 hover:bg-blue-800 text-white"
                   >
                     <Play className="h-4 w-4 mr-1" />
                     New Game
@@ -382,27 +384,27 @@ const Index = () => {
         {/* Main Content */}
         <div className="max-w-7xl mx-auto p-4">
           {/* Scoreboard Table */}
-          <Card className="shadow-xl border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
+          <Card className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full border-collapse">
                   <thead>
-                    <tr className="bg-gray-50 dark:bg-gray-700 border-b dark:border-gray-600">
-                      <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300 min-w-24">
+                    <tr className="bg-gray-100 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600">
+                      <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600 min-w-24">
                         Round
                       </th>
                       {gameState.players.map((player, index) => (
-                        <th key={index} className="px-4 py-4 text-center text-sm font-semibold min-w-32">
+                        <th key={index} className="px-4 py-4 text-center text-sm font-semibold border-r border-gray-300 dark:border-gray-600 last:border-r-0 min-w-32">
                           <div className="flex flex-col items-center gap-2">
                             <div className="flex items-center gap-2">
                               {getLeaderPosition(index) === 1 && (
-                                <Trophy className="h-4 w-4 text-yellow-500" />
+                                <Trophy className="h-4 w-4 text-blue-900" />
                               )}
                               <span className="text-gray-900 dark:text-white">{player.name}</span>
                             </div>
                             <Badge 
                               variant={getLeaderPosition(index) === 1 ? "default" : "secondary"}
-                              className={`text-xs ${getLeaderPosition(index) === 1 ? 'bg-yellow-500 hover:bg-yellow-600' : ''}`}
+                              className={`text-xs ${getLeaderPosition(index) === 1 ? 'bg-blue-900 hover:bg-blue-800 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'}`}
                             >
                               {player.totalScore} pts
                             </Badge>
@@ -413,15 +415,15 @@ const Index = () => {
                   </thead>
                   <tbody>
                     {Array.from({ length: gameState.currentRound + 1 }, (_, roundIndex) => (
-                      <tr key={roundIndex} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                        <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                      <tr key={roundIndex} className="border-b border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600">
                           Round {roundIndex + 1}
                           {roundIndex === gameState.currentRound && !gameState.gameEnded && (
-                            <Badge variant="outline" className="ml-2 text-xs">Current</Badge>
+                            <Badge variant="outline" className="ml-2 text-xs border-gray-300 dark:border-gray-600">Current</Badge>
                           )}
                         </td>
                         {gameState.players.map((player, playerIndex) => (
-                          <td key={playerIndex} className="px-4 py-4 text-center">
+                          <td key={playerIndex} className="px-4 py-4 text-center border-r border-gray-300 dark:border-gray-600 last:border-r-0">
                             <div className="flex flex-col items-center gap-2">
                               <span className="text-lg font-semibold text-gray-900 dark:text-white">
                                 {player.roundScores[roundIndex] || 0}
@@ -430,7 +432,7 @@ const Index = () => {
                                 <Button
                                   size="sm"
                                   onClick={() => addPoint(playerIndex)}
-                                  className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-3 py-1 rounded-md transition-all duration-200 hover:scale-105"
+                                  className="bg-blue-900 hover:bg-blue-800 text-white font-medium px-3 py-1 rounded"
                                 >
                                   +10
                                 </Button>
@@ -448,14 +450,14 @@ const Index = () => {
 
           {/* Game Over Summary */}
           {gameState.gameEnded && (
-            <Card className="mt-6 shadow-xl border-0 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20">
-              <CardHeader className="text-center">
+            <Card className="mt-6 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+              <CardHeader className="text-center border-b border-gray-200 dark:border-gray-600">
                 <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-2">
-                  <Trophy className="h-8 w-8 text-yellow-500" />
+                  <Trophy className="h-8 w-8 text-blue-900" />
                   Game Over - Final Results
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[...gameState.players]
                     .map((player, index) => ({ ...player, originalIndex: index }))
@@ -463,22 +465,22 @@ const Index = () => {
                     .map((player, position) => (
                       <div 
                         key={player.originalIndex}
-                        className={`p-4 rounded-lg border-2 transition-all duration-200 ${
+                        className={`p-4 rounded border-2 ${
                           position === 0 
-                            ? 'border-yellow-400 bg-yellow-50 dark:bg-yellow-900/20' 
-                            : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800'
+                            ? 'border-blue-900 bg-blue-50 dark:bg-blue-900/20' 
+                            : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            {position === 0 && <Trophy className="h-5 w-5 text-yellow-500" />}
+                            {position === 0 && <Trophy className="h-5 w-5 text-blue-900" />}
                             <span className="font-semibold text-gray-900 dark:text-white">
                               #{position + 1} {player.name}
                             </span>
                           </div>
                           <Badge 
                             variant={position === 0 ? "default" : "secondary"}
-                            className={position === 0 ? 'bg-yellow-500 hover:bg-yellow-600' : ''}
+                            className={position === 0 ? 'bg-blue-900 hover:bg-blue-800 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'}
                           >
                             {player.totalScore} pts
                           </Badge>
